@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		196143E41A7C1F1400CDE23D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196143E31A7C1F1400CDE23D /* AppDelegate.swift */; };
+		196143E61A7C1F1400CDE23D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196143E51A7C1F1400CDE23D /* ViewController.swift */; };
+		196143E91A7C1F1400CDE23D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 196143E71A7C1F1400CDE23D /* Main.storyboard */; };
+		196143EB1A7C1F1400CDE23D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 196143EA1A7C1F1400CDE23D /* Images.xcassets */; };
+		196143EE1A7C1F1400CDE23D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 196143EC1A7C1F1400CDE23D /* LaunchScreen.xib */; };
+		196143FA1A7C1F1500CDE23D /* SimpleThermostatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196143F91A7C1F1500CDE23D /* SimpleThermostatTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		196143F41A7C1F1500CDE23D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196143D61A7C1F1400CDE23D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 196143DD1A7C1F1400CDE23D;
+			remoteInfo = SimpleThermostat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		196143DE1A7C1F1400CDE23D /* SimpleThermostat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleThermostat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		196143E21A7C1F1400CDE23D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		196143E31A7C1F1400CDE23D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		196143E51A7C1F1400CDE23D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		196143E81A7C1F1400CDE23D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		196143EA1A7C1F1400CDE23D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		196143ED1A7C1F1400CDE23D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		196143F31A7C1F1500CDE23D /* SimpleThermostatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleThermostatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		196143F81A7C1F1500CDE23D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		196143F91A7C1F1500CDE23D /* SimpleThermostatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleThermostatTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		196143DB1A7C1F1400CDE23D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		196143F01A7C1F1400CDE23D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		196143D51A7C1F1400CDE23D = {
+			isa = PBXGroup;
+			children = (
+				196143E01A7C1F1400CDE23D /* SimpleThermostat */,
+				196143F61A7C1F1500CDE23D /* SimpleThermostatTests */,
+				196143DF1A7C1F1400CDE23D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		196143DF1A7C1F1400CDE23D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				196143DE1A7C1F1400CDE23D /* SimpleThermostat.app */,
+				196143F31A7C1F1500CDE23D /* SimpleThermostatTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		196143E01A7C1F1400CDE23D /* SimpleThermostat */ = {
+			isa = PBXGroup;
+			children = (
+				196143E31A7C1F1400CDE23D /* AppDelegate.swift */,
+				196143E51A7C1F1400CDE23D /* ViewController.swift */,
+				196143E71A7C1F1400CDE23D /* Main.storyboard */,
+				196143EA1A7C1F1400CDE23D /* Images.xcassets */,
+				196143EC1A7C1F1400CDE23D /* LaunchScreen.xib */,
+				196143E11A7C1F1400CDE23D /* Supporting Files */,
+			);
+			path = SimpleThermostat;
+			sourceTree = "<group>";
+		};
+		196143E11A7C1F1400CDE23D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				196143E21A7C1F1400CDE23D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		196143F61A7C1F1500CDE23D /* SimpleThermostatTests */ = {
+			isa = PBXGroup;
+			children = (
+				196143F91A7C1F1500CDE23D /* SimpleThermostatTests.swift */,
+				196143F71A7C1F1500CDE23D /* Supporting Files */,
+			);
+			path = SimpleThermostatTests;
+			sourceTree = "<group>";
+		};
+		196143F71A7C1F1500CDE23D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				196143F81A7C1F1500CDE23D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		196143DD1A7C1F1400CDE23D /* SimpleThermostat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 196143FD1A7C1F1500CDE23D /* Build configuration list for PBXNativeTarget "SimpleThermostat" */;
+			buildPhases = (
+				196143DA1A7C1F1400CDE23D /* Sources */,
+				196143DB1A7C1F1400CDE23D /* Frameworks */,
+				196143DC1A7C1F1400CDE23D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimpleThermostat;
+			productName = SimpleThermostat;
+			productReference = 196143DE1A7C1F1400CDE23D /* SimpleThermostat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		196143F21A7C1F1400CDE23D /* SimpleThermostatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 196144001A7C1F1500CDE23D /* Build configuration list for PBXNativeTarget "SimpleThermostatTests" */;
+			buildPhases = (
+				196143EF1A7C1F1400CDE23D /* Sources */,
+				196143F01A7C1F1400CDE23D /* Frameworks */,
+				196143F11A7C1F1400CDE23D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				196143F51A7C1F1500CDE23D /* PBXTargetDependency */,
+			);
+			name = SimpleThermostatTests;
+			productName = SimpleThermostatTests;
+			productReference = 196143F31A7C1F1500CDE23D /* SimpleThermostatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		196143D61A7C1F1400CDE23D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Tucker Kirven";
+				TargetAttributes = {
+					196143DD1A7C1F1400CDE23D = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					196143F21A7C1F1400CDE23D = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 196143DD1A7C1F1400CDE23D;
+					};
+				};
+			};
+			buildConfigurationList = 196143D91A7C1F1400CDE23D /* Build configuration list for PBXProject "SimpleThermostat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 196143D51A7C1F1400CDE23D;
+			productRefGroup = 196143DF1A7C1F1400CDE23D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				196143DD1A7C1F1400CDE23D /* SimpleThermostat */,
+				196143F21A7C1F1400CDE23D /* SimpleThermostatTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		196143DC1A7C1F1400CDE23D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				196143E91A7C1F1400CDE23D /* Main.storyboard in Resources */,
+				196143EE1A7C1F1400CDE23D /* LaunchScreen.xib in Resources */,
+				196143EB1A7C1F1400CDE23D /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		196143F11A7C1F1400CDE23D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		196143DA1A7C1F1400CDE23D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				196143E61A7C1F1400CDE23D /* ViewController.swift in Sources */,
+				196143E41A7C1F1400CDE23D /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		196143EF1A7C1F1400CDE23D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				196143FA1A7C1F1500CDE23D /* SimpleThermostatTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		196143F51A7C1F1500CDE23D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 196143DD1A7C1F1400CDE23D /* SimpleThermostat */;
+			targetProxy = 196143F41A7C1F1500CDE23D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		196143E71A7C1F1400CDE23D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				196143E81A7C1F1400CDE23D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		196143EC1A7C1F1400CDE23D /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				196143ED1A7C1F1400CDE23D /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		196143FB1A7C1F1500CDE23D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		196143FC1A7C1F1500CDE23D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		196143FE1A7C1F1500CDE23D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SimpleThermostat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		196143FF1A7C1F1500CDE23D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SimpleThermostat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		196144011A7C1F1500CDE23D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SimpleThermostatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimpleThermostat.app/SimpleThermostat";
+			};
+			name = Debug;
+		};
+		196144021A7C1F1500CDE23D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SimpleThermostatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimpleThermostat.app/SimpleThermostat";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		196143D91A7C1F1400CDE23D /* Build configuration list for PBXProject "SimpleThermostat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				196143FB1A7C1F1500CDE23D /* Debug */,
+				196143FC1A7C1F1500CDE23D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		196143FD1A7C1F1500CDE23D /* Build configuration list for PBXNativeTarget "SimpleThermostat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				196143FE1A7C1F1500CDE23D /* Debug */,
+				196143FF1A7C1F1500CDE23D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		196144001A7C1F1500CDE23D /* Build configuration list for PBXNativeTarget "SimpleThermostatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				196144011A7C1F1500CDE23D /* Debug */,
+				196144021A7C1F1500CDE23D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 196143D61A7C1F1400CDE23D /* Project object */;
+}
