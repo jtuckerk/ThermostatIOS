@@ -7,12 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1908FBF11ACF1BD90089FAD4 /* settings18.png in Resources */ = {isa = PBXBuildFile; fileRef = 1908FBF01ACF1BD90089FAD4 /* settings18.png */; };
 		196143E41A7C1F1400CDE23D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196143E31A7C1F1400CDE23D /* AppDelegate.swift */; };
-		196143E61A7C1F1400CDE23D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196143E51A7C1F1400CDE23D /* ViewController.swift */; };
-		196143E91A7C1F1400CDE23D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 196143E71A7C1F1400CDE23D /* Main.storyboard */; };
+		196143E91A7C1F1400CDE23D /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 196143E71A7C1F1400CDE23D /* main.storyboard */; };
 		196143EB1A7C1F1400CDE23D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 196143EA1A7C1F1400CDE23D /* Images.xcassets */; };
-		196143EE1A7C1F1400CDE23D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 196143EC1A7C1F1400CDE23D /* LaunchScreen.xib */; };
 		196143FA1A7C1F1500CDE23D /* SimpleThermostatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196143F91A7C1F1500CDE23D /* SimpleThermostatTests.swift */; };
+		196144431A7D9C6200CDE23D /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 196144421A7D9C6200CDE23D /* GCDAsyncSocket.m */; };
+		196424FB1AC3333D001BE282 /* thermostatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196424FA1AC3333D001BE282 /* thermostatViewController.swift */; };
+		196424FD1AC3334E001BE282 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196424FC1AC3334E001BE282 /* ScheduleViewController.swift */; };
+		196425011AC33424001BE282 /* WirelessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196425001AC33424001BE282 /* WirelessController.swift */; };
+		196425031AC33438001BE282 /* WiredController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196425021AC33438001BE282 /* WiredController.swift */; };
+		199EA0D81AC501660002A0C5 /* DayScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EA0D71AC501660002A0C5 /* DayScheduleViewController.swift */; };
+		199EA0DA1AC505B60002A0C5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EA0D91AC505B60002A0C5 /* Schedule.swift */; };
+		199EA0DC1AC528950002A0C5 /* JTKColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EA0DB1AC528950002A0C5 /* JTKColors.swift */; };
+		19A2BAFB1ACB93BE00267EF6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19A2BAFA1ACB93BE00267EF6 /* LaunchScreen.xib */; };
+		19A2BAFD1ACB98BA00267EF6 /* PlusImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A2BAFC1ACB98BA00267EF6 /* PlusImage.png */; };
+		19A2BAFF1ACB9A2B00267EF6 /* MinusImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A2BAFE1ACB9A2B00267EF6 /* MinusImage.png */; };
+		19DAC9FE1AC892B400F75860 /* JSONParseDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DAC9FD1AC892B400F75860 /* JSONParseDictionary.swift */; };
+		19DACA001AC892BE00F75860 /* JSONParseArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DAC9FF1AC892BE00F75860 /* JSONParseArray.swift */; };
+		19DACA021AC892C800F75860 /* JSONStringify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DACA011AC892C800F75860 /* JSONStringify.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +39,33 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1908FBF01ACF1BD90089FAD4 /* settings18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings18.png; sourceTree = "<group>"; };
 		196143DE1A7C1F1400CDE23D /* SimpleThermostat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleThermostat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		196143E21A7C1F1400CDE23D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		196143E31A7C1F1400CDE23D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		196143E51A7C1F1400CDE23D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		196143E81A7C1F1400CDE23D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		196143E81A7C1F1400CDE23D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/main.storyboard; sourceTree = "<group>"; };
 		196143EA1A7C1F1400CDE23D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		196143ED1A7C1F1400CDE23D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		196143F31A7C1F1500CDE23D /* SimpleThermostatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleThermostatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		196143F81A7C1F1500CDE23D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		196143F91A7C1F1500CDE23D /* SimpleThermostatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleThermostatTests.swift; sourceTree = "<group>"; };
+		196144401A7D9BDF00CDE23D /* SimpleThermostat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleThermostat-Bridging-Header.h"; sourceTree = "<group>"; };
+		196144411A7D9C5800CDE23D /* GCDAsyncSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		196144421A7D9C6200CDE23D /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		196144441A7D9E1B00CDE23D /* SimpleThermostatTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleThermostatTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		196424FA1AC3333D001BE282 /* thermostatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = thermostatViewController.swift; sourceTree = "<group>"; };
+		196424FC1AC3334E001BE282 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		196425001AC33424001BE282 /* WirelessController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WirelessController.swift; sourceTree = "<group>"; };
+		196425021AC33438001BE282 /* WiredController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WiredController.swift; sourceTree = "<group>"; };
+		199EA0D71AC501660002A0C5 /* DayScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayScheduleViewController.swift; sourceTree = "<group>"; };
+		199EA0D91AC505B60002A0C5 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		199EA0DB1AC528950002A0C5 /* JTKColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTKColors.swift; sourceTree = "<group>"; };
+		19A2BAFA1ACB93BE00267EF6 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		19A2BAFC1ACB98BA00267EF6 /* PlusImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlusImage.png; sourceTree = "<group>"; };
+		19A2BAFE1ACB9A2B00267EF6 /* MinusImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MinusImage.png; sourceTree = "<group>"; };
+		19DAC9FD1AC892B400F75860 /* JSONParseDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParseDictionary.swift; sourceTree = "<group>"; };
+		19DAC9FF1AC892BE00F75860 /* JSONParseArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParseArray.swift; sourceTree = "<group>"; };
+		19DACA011AC892C800F75860 /* JSONStringify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONStringify.swift; sourceTree = "<group>"; };
+		19FE909F1AC9D67400BA2143 /* SimpleThermostat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SimpleThermostat.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +107,13 @@
 		196143E01A7C1F1400CDE23D /* SimpleThermostat */ = {
 			isa = PBXGroup;
 			children = (
+				19FE909F1AC9D67400BA2143 /* SimpleThermostat.entitlements */,
 				196143E31A7C1F1400CDE23D /* AppDelegate.swift */,
-				196143E51A7C1F1400CDE23D /* ViewController.swift */,
-				196143E71A7C1F1400CDE23D /* Main.storyboard */,
+				196144071A7C26AB00CDE23D /* Model */,
+				196144061A7C26A500CDE23D /* View */,
+				196144051A7C269500CDE23D /* Controller */,
 				196143EA1A7C1F1400CDE23D /* Images.xcassets */,
-				196143EC1A7C1F1400CDE23D /* LaunchScreen.xib */,
+				19A2BAFA1ACB93BE00267EF6 /* LaunchScreen.xib */,
 				196143E11A7C1F1400CDE23D /* Supporting Files */,
 			);
 			path = SimpleThermostat;
@@ -90,6 +122,12 @@
 		196143E11A7C1F1400CDE23D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1908FBF01ACF1BD90089FAD4 /* settings18.png */,
+				19A2BAFE1ACB9A2B00267EF6 /* MinusImage.png */,
+				19A2BAFC1ACB98BA00267EF6 /* PlusImage.png */,
+				196144401A7D9BDF00CDE23D /* SimpleThermostat-Bridging-Header.h */,
+				196144421A7D9C6200CDE23D /* GCDAsyncSocket.m */,
+				196144411A7D9C5800CDE23D /* GCDAsyncSocket.h */,
 				196143E21A7C1F1400CDE23D /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -98,6 +136,7 @@
 		196143F61A7C1F1500CDE23D /* SimpleThermostatTests */ = {
 			isa = PBXGroup;
 			children = (
+				196144441A7D9E1B00CDE23D /* SimpleThermostatTests-Bridging-Header.h */,
 				196143F91A7C1F1500CDE23D /* SimpleThermostatTests.swift */,
 				196143F71A7C1F1500CDE23D /* Supporting Files */,
 			);
@@ -110,6 +149,38 @@
 				196143F81A7C1F1500CDE23D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		196144051A7C269500CDE23D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				196425001AC33424001BE282 /* WirelessController.swift */,
+				196425021AC33438001BE282 /* WiredController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		196144061A7C26A500CDE23D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				196143E71A7C1F1400CDE23D /* main.storyboard */,
+				196424FA1AC3333D001BE282 /* thermostatViewController.swift */,
+				196424FC1AC3334E001BE282 /* ScheduleViewController.swift */,
+				199EA0D71AC501660002A0C5 /* DayScheduleViewController.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		196144071A7C26AB00CDE23D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				19DACA011AC892C800F75860 /* JSONStringify.swift */,
+				19DAC9FF1AC892BE00F75860 /* JSONParseArray.swift */,
+				19DAC9FD1AC892B400F75860 /* JSONParseDictionary.swift */,
+				199EA0D91AC505B60002A0C5 /* Schedule.swift */,
+				199EA0DB1AC528950002A0C5 /* JTKColors.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +232,15 @@
 				TargetAttributes = {
 					196143DD1A7C1F1400CDE23D = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 7MA825R8KR;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.WAC = {
+								enabled = 0;
+							};
+						};
 					};
 					196143F21A7C1F1400CDE23D = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -192,9 +272,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				196143E91A7C1F1400CDE23D /* Main.storyboard in Resources */,
-				196143EE1A7C1F1400CDE23D /* LaunchScreen.xib in Resources */,
+				19A2BAFD1ACB98BA00267EF6 /* PlusImage.png in Resources */,
+				196143E91A7C1F1400CDE23D /* main.storyboard in Resources */,
+				19A2BAFF1ACB9A2B00267EF6 /* MinusImage.png in Resources */,
+				19A2BAFB1ACB93BE00267EF6 /* LaunchScreen.xib in Resources */,
 				196143EB1A7C1F1400CDE23D /* Images.xcassets in Resources */,
+				1908FBF11ACF1BD90089FAD4 /* settings18.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,8 +295,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				196143E61A7C1F1400CDE23D /* ViewController.swift in Sources */,
+				19DAC9FE1AC892B400F75860 /* JSONParseDictionary.swift in Sources */,
+				19DACA021AC892C800F75860 /* JSONStringify.swift in Sources */,
+				19DACA001AC892BE00F75860 /* JSONParseArray.swift in Sources */,
+				196144431A7D9C6200CDE23D /* GCDAsyncSocket.m in Sources */,
+				199EA0DC1AC528950002A0C5 /* JTKColors.swift in Sources */,
+				196425031AC33438001BE282 /* WiredController.swift in Sources */,
+				196424FD1AC3334E001BE282 /* ScheduleViewController.swift in Sources */,
+				199EA0D81AC501660002A0C5 /* DayScheduleViewController.swift in Sources */,
+				196425011AC33424001BE282 /* WirelessController.swift in Sources */,
 				196143E41A7C1F1400CDE23D /* AppDelegate.swift in Sources */,
+				199EA0DA1AC505B60002A0C5 /* Schedule.swift in Sources */,
+				196424FB1AC3333D001BE282 /* thermostatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,20 +329,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		196143E71A7C1F1400CDE23D /* Main.storyboard */ = {
+		196143E71A7C1F1400CDE23D /* main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				196143E81A7C1F1400CDE23D /* Base */,
 			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		196143EC1A7C1F1400CDE23D /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				196143ED1A7C1F1400CDE23D /* Base */,
-			);
-			name = LaunchScreen.xib;
+			name = main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -338,9 +423,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SimpleThermostat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SimpleThermostat/SimpleThermostat-Bridging-Header.h";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "SimpleThermostat-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -348,9 +439,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SimpleThermostat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SimpleThermostat/SimpleThermostat-Bridging-Header.h";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "";
 			};
 			name = Release;
 		};
@@ -358,6 +454,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -369,6 +466,8 @@
 				INFOPLIST_FILE = SimpleThermostatTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SimpleThermostatTests/SimpleThermostatTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimpleThermostat.app/SimpleThermostat";
 			};
 			name = Debug;
@@ -377,6 +476,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -384,6 +484,7 @@
 				INFOPLIST_FILE = SimpleThermostatTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SimpleThermostatTests/SimpleThermostatTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimpleThermostat.app/SimpleThermostat";
 			};
 			name = Release;
@@ -407,6 +508,7 @@
 				196143FF1A7C1F1500CDE23D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		196144001A7C1F1500CDE23D /* Build configuration list for PBXNativeTarget "SimpleThermostatTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +517,7 @@
 				196144021A7C1F1500CDE23D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

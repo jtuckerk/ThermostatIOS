@@ -1,25 +1,253 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JV9-aY-cgA">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--thermostat View -->
+        <scene sceneID="dwj-W6-1MC">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="JV9-aY-cgA" userLabel="thermostat View " customClass="thermostatViewController" customModule="SimpleThermostat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="74F-PQ-I6C"/>
+                        <viewControllerLayoutGuide type="bottom" id="c5E-6z-jrD"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="DSw-8S-KVx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWV-CF-ipy">
+                                <rect key="frame" x="300" y="0.0" width="300" height="65"/>
+                                <color key="backgroundColor" red="0.90674126150000001" green="0.3783571422" blue="0.02755692974" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                                <state key="normal" title="Schedule">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="WXM-Il-MSD" kind="presentation" modalTransitionStyle="crossDissolve" id="z0M-rs-DJn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSX-pf-SFb">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="65"/>
+                                <color key="backgroundColor" red="0.75206512209999998" green="0.31894981859999999" blue="0.019764119760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="fjn-dO-Siw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                                <state key="normal" title="Thermostat">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBp-Ey-ULJ">
+                                <rect key="frame" x="0.0" y="558" width="40" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="B7n-rm-rQz"/>
+                                    <constraint firstAttribute="height" constant="42" id="W8P-7k-FGK"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.75206512209999998" green="0.31894981859999999" blue="0.019764119760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="settingsClick:" destination="JV9-aY-cgA" eventType="touchUpInside" id="fTF-ME-eDr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97369843720000004" green="0.90371197459999997" blue="0.80729466679999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="yBp-Ey-ULJ" firstAttribute="leading" secondItem="DSw-8S-KVx" secondAttribute="leadingMargin" constant="-16" id="KaT-4w-zz3"/>
+                            <constraint firstItem="jSX-pf-SFb" firstAttribute="leading" secondItem="DSw-8S-KVx" secondAttribute="leadingMargin" constant="-16" id="LMM-SW-TIH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dWV-CF-ipy" secondAttribute="trailing" constant="-16" id="LdY-F1-zcr"/>
+                            <constraint firstItem="dWV-CF-ipy" firstAttribute="height" secondItem="jSX-pf-SFb" secondAttribute="height" id="Llc-Cr-5k6"/>
+                            <constraint firstItem="dWV-CF-ipy" firstAttribute="top" secondItem="DSw-8S-KVx" secondAttribute="topMargin" id="QAO-uE-dBq"/>
+                            <constraint firstItem="jSX-pf-SFb" firstAttribute="top" secondItem="DSw-8S-KVx" secondAttribute="topMargin" id="Qit-Nb-fDm"/>
+                            <constraint firstItem="c5E-6z-jrD" firstAttribute="top" secondItem="yBp-Ey-ULJ" secondAttribute="bottom" id="UdX-cZ-asd"/>
+                            <constraint firstItem="dWV-CF-ipy" firstAttribute="leading" secondItem="jSX-pf-SFb" secondAttribute="trailing" id="Yh7-zu-gPB"/>
+                            <constraint firstItem="dWV-CF-ipy" firstAttribute="width" secondItem="jSX-pf-SFb" secondAttribute="width" id="mAA-Gp-njE"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="GP7-Rh-ugL"/>
+                    <connections>
+                        <outlet property="scheduleButton" destination="dWV-CF-ipy" id="ors-Hj-afZ"/>
+                        <outlet property="settingsButton" destination="yBp-Ey-ULJ" id="Phb-TG-v0f"/>
+                        <outlet property="thermostatButton" destination="jSX-pf-SFb" id="a2N-mW-nsd"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="04W-5l-J66" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-592" y="-922"/>
+        </scene>
+        <!--Schedule View Controller-->
+        <scene sceneID="ns1-z3-mnk">
+            <objects>
+                <viewController id="WXM-Il-MSD" customClass="scheduleViewController" customModule="SimpleThermostat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="caf-UC-7TM"/>
+                        <viewControllerLayoutGuide type="bottom" id="bUW-Us-uap"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wWr-df-uMc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCi-1x-dGh">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="65"/>
+                                <color key="backgroundColor" red="0.90674126148223877" green="0.37835714221000671" blue="0.027556929737329483" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                                <state key="normal" title="Thermostat">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="JV9-aY-cgA" kind="presentation" modalTransitionStyle="crossDissolve" id="CB5-lB-fN4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPB-aL-247">
+                                <rect key="frame" x="300" y="0.0" width="300" height="65"/>
+                                <color key="backgroundColor" red="0.75206512212753296" green="0.31894981861114502" blue="0.019764119759202003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="A4y-dx-gf1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                                <state key="normal" title="Schedule">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kW6-bs-gda">
+                                <rect key="frame" x="0.0" y="65" width="600" height="535"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="kW6-bs-gda" secondAttribute="trailing" constant="-16" id="F1p-WW-6bd"/>
+                            <constraint firstItem="bUW-Us-uap" firstAttribute="top" secondItem="kW6-bs-gda" secondAttribute="bottom" id="Mna-Dn-3zo"/>
+                            <constraint firstItem="PPB-aL-247" firstAttribute="top" secondItem="wWr-df-uMc" secondAttribute="topMargin" id="TQy-yO-yvb"/>
+                            <constraint firstItem="kW6-bs-gda" firstAttribute="top" secondItem="PPB-aL-247" secondAttribute="bottom" id="WsU-DW-WkH"/>
+                            <constraint firstItem="SCi-1x-dGh" firstAttribute="leading" secondItem="wWr-df-uMc" secondAttribute="leadingMargin" constant="-16" id="YnE-4k-qTn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PPB-aL-247" secondAttribute="trailing" constant="-16" id="bhf-CR-mEa"/>
+                            <constraint firstItem="PPB-aL-247" firstAttribute="leading" secondItem="SCi-1x-dGh" secondAttribute="trailing" id="bi2-wd-ZRI"/>
+                            <constraint firstItem="kW6-bs-gda" firstAttribute="leading" secondItem="wWr-df-uMc" secondAttribute="leadingMargin" constant="-16" id="e2T-KL-Jk7"/>
+                            <constraint firstItem="SCi-1x-dGh" firstAttribute="top" secondItem="wWr-df-uMc" secondAttribute="topMargin" id="rD5-X7-Ezu"/>
+                            <constraint firstItem="SCi-1x-dGh" firstAttribute="height" secondItem="PPB-aL-247" secondAttribute="height" id="wdo-9g-Tu4"/>
+                            <constraint firstItem="SCi-1x-dGh" firstAttribute="width" secondItem="PPB-aL-247" secondAttribute="width" id="yuJ-zV-xTx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="boE-gN-dcZ"/>
+                    <connections>
+                        <outlet property="backgroundView" destination="kW6-bs-gda" id="QVf-zI-1Fk"/>
+                        <outlet property="scheduleButton" destination="PPB-aL-247" id="FmW-VR-kku"/>
+                        <outlet property="thermostatButton" destination="SCi-1x-dGh" id="DIM-4E-BuN"/>
+                        <segue destination="Vae-rO-8GT" kind="presentation" identifier="dayOfWeek" modalTransitionStyle="crossDissolve" id="otE-IW-Gnr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uih-FN-Q8o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="85" y="-922"/>
+        </scene>
+        <!--Day Schedule View Controller -->
+        <scene sceneID="tV5-dM-bFB">
+            <objects>
+                <viewController id="Vae-rO-8GT" userLabel="Day Schedule View Controller " customClass="DayScheduleViewController" customModule="SimpleThermostat" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7CK-eb-lf4"/>
+                        <viewControllerLayoutGuide type="bottom" id="7qP-WA-cBI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="msX-S3-5XO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFI-bS-JQu">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn2-CI-uu4">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="65"/>
+                                        <color key="backgroundColor" red="0.90674126150000001" green="0.3783571422" blue="0.02755692974" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doneClick:" destination="Vae-rO-8GT" eventType="touchUpInside" id="Vef-bU-Tzj"/>
+                                            <segue destination="WXM-Il-MSD" kind="presentation" identifier="done" modalTransitionStyle="crossDissolve" id="z4r-QF-KXT"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TR4-N8-yXQ">
+                                        <rect key="frame" x="317" y="29" width="72" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.75206512209999998" green="0.31894981859999999" blue="0.019764119760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="TR4-N8-yXQ" secondAttribute="bottom" id="BPX-nu-fJV"/>
+                                    <constraint firstItem="Yn2-CI-uu4" firstAttribute="width" secondItem="GFI-bS-JQu" secondAttribute="width" multiplier="25%" id="R7y-An-Xrx"/>
+                                    <constraint firstItem="Yn2-CI-uu4" firstAttribute="leading" secondItem="GFI-bS-JQu" secondAttribute="leading" id="Yaz-lb-GK3"/>
+                                    <constraint firstItem="Yn2-CI-uu4" firstAttribute="height" secondItem="GFI-bS-JQu" secondAttribute="height" id="r7Z-kw-okv"/>
+                                    <constraint firstAttribute="height" constant="65" id="rj6-hg-NmH"/>
+                                    <constraint firstItem="Yn2-CI-uu4" firstAttribute="top" secondItem="GFI-bS-JQu" secondAttribute="top" id="xdz-Ii-pGl"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agg-ET-Z0C" userLabel="timeView">
+                                <rect key="frame" x="75" y="65" width="75" height="535"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tsf-oc-oda">
+                                <rect key="frame" x="555" y="65" width="45" height="535"/>
+                                <color key="backgroundColor" red="0.97369843720000004" green="0.90371197459999997" blue="0.80729466679999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7F-PJ-zqs" userLabel="bigView">
+                                <rect key="frame" x="150" y="65" width="405" height="535"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97369843720000004" green="0.90371197459999997" blue="0.80729466679999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="7qP-WA-cBI" firstAttribute="top" secondItem="e7F-PJ-zqs" secondAttribute="bottom" id="27c-Wo-oZc"/>
+                            <constraint firstItem="tsf-oc-oda" firstAttribute="top" secondItem="GFI-bS-JQu" secondAttribute="bottom" id="3tI-A6-6WI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GFI-bS-JQu" secondAttribute="trailing" constant="-16" id="65u-bh-oqG"/>
+                            <constraint firstItem="7qP-WA-cBI" firstAttribute="top" secondItem="agg-ET-Z0C" secondAttribute="bottom" id="AEt-S6-vNX"/>
+                            <constraint firstItem="e7F-PJ-zqs" firstAttribute="centerX" secondItem="TR4-N8-yXQ" secondAttribute="centerX" id="DCe-8o-gin"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tsf-oc-oda" secondAttribute="trailing" constant="-16" id="PbI-4d-THz"/>
+                            <constraint firstItem="agg-ET-Z0C" firstAttribute="top" secondItem="GFI-bS-JQu" secondAttribute="bottom" id="diL-Ne-6kT"/>
+                            <constraint firstItem="e7F-PJ-zqs" firstAttribute="width" secondItem="msX-S3-5XO" secondAttribute="width" multiplier="67.5%" id="du5-Dg-PwR"/>
+                            <constraint firstItem="e7F-PJ-zqs" firstAttribute="leading" secondItem="agg-ET-Z0C" secondAttribute="trailing" id="gcP-x2-9si"/>
+                            <constraint firstItem="e7F-PJ-zqs" firstAttribute="top" secondItem="GFI-bS-JQu" secondAttribute="bottom" id="jrO-JC-FmK"/>
+                            <constraint firstItem="tsf-oc-oda" firstAttribute="width" secondItem="msX-S3-5XO" secondAttribute="width" multiplier="7.5:100" id="p8b-nT-TwZ"/>
+                            <constraint firstItem="7qP-WA-cBI" firstAttribute="top" secondItem="tsf-oc-oda" secondAttribute="bottom" id="piM-5L-3fq"/>
+                            <constraint firstItem="tsf-oc-oda" firstAttribute="leading" secondItem="e7F-PJ-zqs" secondAttribute="trailing" id="pom-wT-7gC"/>
+                            <constraint firstItem="GFI-bS-JQu" firstAttribute="leading" secondItem="msX-S3-5XO" secondAttribute="leadingMargin" constant="-16" id="rnJ-nI-CD2"/>
+                            <constraint firstItem="GFI-bS-JQu" firstAttribute="top" secondItem="msX-S3-5XO" secondAttribute="topMargin" id="uti-Fg-Z1s"/>
+                            <constraint firstItem="agg-ET-Z0C" firstAttribute="width" secondItem="msX-S3-5XO" secondAttribute="width" multiplier="12.5%" id="yXO-4r-5rY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="DayLabel" destination="TR4-N8-yXQ" id="8Xa-P2-Dr1"/>
+                        <outlet property="bigView" destination="e7F-PJ-zqs" id="M5b-Wv-kag"/>
+                        <outlet property="dayLabelTop" destination="GFI-bS-JQu" id="RG5-Ru-Aey"/>
+                        <outlet property="doneButton" destination="Yn2-CI-uu4" id="izg-zf-H1v"/>
+                        <outlet property="tempViewBig" destination="tsf-oc-oda" id="UpC-Qv-40I"/>
+                        <outlet property="timeView" destination="agg-ET-Z0C" id="cF6-oP-ZCw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gJO-t0-am8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="728" y="-1062"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="z4r-QF-KXT"/>
+    </inferredMetricsTieBreakers>
+    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
