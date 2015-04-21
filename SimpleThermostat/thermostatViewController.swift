@@ -11,14 +11,21 @@ import Foundation
 import UIKit
 
 class thermostatViewController: UIViewController {
+
+    // allows View controller to access shared schedule and communication interface
+    var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
+    //holds weekly schedule to be accessed by view and updated by the users actions
+    var sched: schedule?
+
+    //keeps touches from causing unwanted actions while in the settings popup
+    var touchMask = false
+    
+    //navigation buttons
     @IBOutlet weak var scheduleButton: UIButton!
     @IBOutlet weak var thermostatButton: UIButton!
     
-    var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    
-    var sched: schedule?
-    
+    //HVAC Displays
     var heatingCoolingViewStrip = UIView()
     var heatingCoolingLabel = UILabel()
     
@@ -29,12 +36,14 @@ class thermostatViewController: UIViewController {
     var statusViewStrip = UIView()
     var statusLabel = UILabel()
     
+    //Current set status displays and controls
     var setPointBigView = UIView()
     var setPointLabel = UILabel()
     var setToLabel = UILabel()
     var minusButton = UIButton()
     var plusButton = UIButton()
     
+    // settings popup items
     var greyOut = UIView()
     var settingsBigView = UIView()
     var settingHouseTempLabel = UILabel()
@@ -42,8 +51,9 @@ class thermostatViewController: UIViewController {
     var plusButtonHouseTemp = UIButton()
     var settingsLabel = UILabel()
     
-    var touchMask = false
+    @IBOutlet weak var settingsButton: UIButton!
     
+    //set Point adjuster
     func plusClick(sender: UIButton!)
     {
         sched!.increaseSetPoint()
@@ -53,6 +63,7 @@ class thermostatViewController: UIViewController {
         updateView()
     }
     
+    //set Point adjuster
     func minusClick(sender: UIButton!)
     {
         sched!.decreaseSetPoint()
@@ -61,6 +72,8 @@ class thermostatViewController: UIViewController {
         
         updateView()
     }
+    
+    //demo settings - temp adjuster
     func plusClickSettings(sender: UIButton!)
     {
         sched!.setTemp(sched!.currentHomeTemp + 1)
@@ -69,19 +82,19 @@ class thermostatViewController: UIViewController {
         updateView()
     }
     
+    //demo settings - temp adjuster
     func minusClickSettings(sender: UIButton!)
     {
          sched!.setTemp(sched!.currentHomeTemp - 1)
        updateView()
     }
     
-
-    
-    @IBOutlet weak var settingsButton: UIButton!
-  
+    //shows demo settings pop up
     @IBAction func settingsClick(sender: AnyObject) {
         settingsShow()
     }
+    
+    
     override func viewDidLoad() {
        super.viewDidLoad()
         appDelegate.currVC = self
@@ -91,44 +104,40 @@ class thermostatViewController: UIViewController {
         scheduleButton.backgroundColor = JTKColors().orangeDark
         thermostatButton.backgroundColor = JTKColors().orangeLight
         
-       plusButton.setImage(UIImage(named: "PlusImage"), forState: .Normal)
-        minusButton.setImage(UIImage(named: "MinusImage"), forState: .Normal)
-        
         settingsButton.setImage(UIImage(named: "settings18"), forState: .Normal)
         
-        bigViewsSetup()
-        hometempInternals()
-        setPointInternals()
-        settingsSetup()
-        settingsHide()
+        bigViewsSetup()     //programmatic autolayout setup for views containing HVAC and schedule info
+        hometempInternals() //current home temp and HVAC status view internals setup
+        setPointInternals() //set point and schedule status view internals setup
+        settingsSetup()     // demo settings view setup
+        settingsHide()      // hides settings view
         
-        appDelegate.connection!.connectionAlert()
-        sched?.updateCurrent()
+        sched?.updateCurrent() // updates with most recent HVAC and schedule info
         updateView()
         
+        //continuosly updates thermosat view bases on the thermostat temp and schedule
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             while true {
                 sleep(1)
                 self.sched?.updateCurrent()
                 
-            
                 dispatch_async(dispatch_get_main_queue()) {
                     self.updateView()
                 }
             }
         }
         
-        
+        //Background thread to keep wall device time synced
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             while true {
-                
                 self.appDelegate.connection!.setTime(self.sched!.getTime())
-                
-                sleep(20)
+                sleep(500)
             }
         }
     }
+    
+    //sets up View for Demo Settings
     func settingsSetup(){
          var constStrings = Array<String>()
         
@@ -195,8 +204,8 @@ class thermostatViewController: UIViewController {
         plusButtonHouseTemp.addTarget(self, action: "plusClickSettings:", forControlEvents: UIControlEvents.TouchUpInside)
         minusButtonHouseTemp.setImage(UIImage(named: "MinusImage"), forState: .Normal)
         minusButtonHouseTemp.addTarget(self, action: "minusClickSettings:", forControlEvents: UIControlEvents.TouchUpInside)
-        plusButtonHouseTemp.setImage(UIImage(named: "MinusImage"), forState: .Highlighted)
-        minusButtonHouseTemp.setImage(UIImage(named: "PlusImage"), forState: .Highlighted)
+        plusButtonHouseTemp.setImage(UIImage(named: "PlusImageGrey"), forState: .Highlighted)
+        minusButtonHouseTemp.setImage(UIImage(named: "MinusImageGrey"), forState: .Highlighted)
         plusButtonHouseTemp.layer.cornerRadius = 3
         plusButtonHouseTemp.layer.borderWidth = 1
         minusButtonHouseTemp.layer.cornerRadius = 3
@@ -211,15 +220,16 @@ class thermostatViewController: UIViewController {
         settingsBigView.addConstraint(pWidth)
         
     }
+    
     func bigViewsSetup(){
         var constStrings = Array<String>()
         
         constStrings.append("H:|[HCViewStrip]|")
         constStrings.append("H:|-16-[homeTempBV]-16-|")
-        constStrings.append("V:[HCViewStrip]-(-10)-[homeTempBV]")
+        constStrings.append("V:|-115-[HCViewStrip]-(-10)-[homeTempBV]-50-[statusViewStrip]")
         constStrings.append("H:|[statusViewStrip]|")
         constStrings.append("H:|-16-[setPointBV]-16-|")
-        constStrings.append("V:[statusViewStrip]-(-10)-[setPointBV]")
+        constStrings.append("V:[statusViewStrip]-(-10)-[setPointBV]-50-|")
 
         
         var views = ["homeTempBV":homeTempBigView,
@@ -248,17 +258,10 @@ class thermostatViewController: UIViewController {
             view.addConstraints(constraintArr)
         }
         
-        var homeTempBVHeight = NSLayoutConstraint(item: homeTempBigView, attribute: .Height, relatedBy: .Equal, toItem:view, attribute: .Height, multiplier: 1/5, constant: 10)
-        var setPointBVHeight = NSLayoutConstraint(item: setPointBigView, attribute: .Height, relatedBy: .Equal, toItem:view, attribute: .Height, multiplier: 1/5, constant: 10)
-        
-        let homeTempYCenterConstraint = NSLayoutConstraint(item: homeTempBigView, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1, constant: -75)
-        let setPointYCenterConstraint = NSLayoutConstraint(item: setPointBigView, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1, constant: 125)
-        
+        var homeTempBVHeight = NSLayoutConstraint(item: homeTempBigView, attribute: .Height, relatedBy: .Equal, toItem:setPointBigView, attribute: .Height, multiplier: 1, constant: 10)
+
         view.addConstraint(homeTempBVHeight)
-        view.addConstraint(setPointBVHeight)
-        view.addConstraint(homeTempYCenterConstraint)
-        view.addConstraint(setPointYCenterConstraint)
-        
+
         heatingCoolingViewStrip.addSubview(heatingCoolingLabel)
         heatingCoolingViewStrip.layer.cornerRadius = 20
         heatingCoolingLabel.text = "Currently: Heating"
@@ -281,7 +284,7 @@ class thermostatViewController: UIViewController {
         
         
         statusViewStrip.addSubview(statusLabel)
-        statusLabel.text = "Home" //@@
+        statusLabel.text = "Home"
         statusLabel.textAlignment = NSTextAlignment.Center
         
         statusLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -301,6 +304,7 @@ class thermostatViewController: UIViewController {
         statusViewStrip.addConstraints(constraintSPH)
     }
     
+    //sets up the internal elements in the home temperature view
     func hometempInternals() {
         var constStrings = Array<String>()
         
@@ -339,6 +343,8 @@ class thermostatViewController: UIViewController {
         }
     }
     
+    //sets up internals of setpoint view
+    // setpoint, plus/minus buttons
     func setPointInternals() {
         var constStrings = Array<String>()
     
@@ -369,17 +375,20 @@ class thermostatViewController: UIViewController {
         }
         
         setPointLabel.text = "Set to"
+        setPointLabel.setContentHuggingPriority(1000, forAxis: .Vertical)
         setPointLabel.textAlignment = NSTextAlignment.Center
         setToLabel.text = "68°"
         setToLabel.textAlignment = NSTextAlignment.Center
         setToLabel.font = UIFont(name: setToLabel.font.fontName, size: 80)
+        setToLabel.adjustsFontSizeToFitWidth = true
+        
         
         plusButton.setImage(UIImage(named: "PlusImage"), forState: .Normal)
         plusButton.addTarget(self, action: "plusClick:", forControlEvents: UIControlEvents.TouchUpInside)
         minusButton.setImage(UIImage(named: "MinusImage"), forState: .Normal)
         minusButton.addTarget(self, action: "minusClick:", forControlEvents: UIControlEvents.TouchUpInside)
-        plusButton.setImage(UIImage(named: "MinusImage"), forState: .Highlighted)
-        minusButton.setImage(UIImage(named: "PlusImage"), forState: .Highlighted)
+        plusButton.setImage(UIImage(named: "PlusImageGrey"), forState: .Highlighted)
+        minusButton.setImage(UIImage(named: "MinusImageGrey"), forState: .Highlighted)
         plusButton.layer.cornerRadius = 3
         plusButton.layer.borderWidth = 1
         minusButton.layer.cornerRadius = 3
@@ -399,6 +408,7 @@ class thermostatViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //updates view with current values including home temp, HVAC status, setPoint, and home/away status
     func updateView(){
         sched!.updateCurrent()
         homeTempLabel.text = String(sched!.currentHomeTemp) + "°"
@@ -409,7 +419,7 @@ class thermostatViewController: UIViewController {
         heatingCoolingLabel.text = hvac
 
         if(hvac == "Heating"){
-            heatingCoolingViewStrip.backgroundColor = JTKColors().orangeDark
+            heatingCoolingViewStrip.backgroundColor = JTKColors().heatingOrange
         }else if ( hvac == "Cooling"){
             heatingCoolingViewStrip.backgroundColor = JTKColors().coolingBlue
         }else{
@@ -425,6 +435,9 @@ class thermostatViewController: UIViewController {
         }
         
     }
+    
+    //when Demo settings popup is open touching outside of the settings view 
+    // hides it
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent){
         if touchMask{
             for touch:AnyObject in touches{
@@ -432,18 +445,18 @@ class thermostatViewController: UIViewController {
                 {
                     settingsHide()
                 }
-               
             }
-          
-                
-     
         }
     }
+    
+    //hide demo settings
     func settingsHide(){
         greyOut.hidden = true
         settingsBigView.hidden = true
         touchMask = false
     }
+    
+    //show demo settings
     func settingsShow(){
         greyOut.hidden = false
         settingsBigView.hidden = false

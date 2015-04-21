@@ -11,18 +11,26 @@ import UIKit
 
 class DayScheduleViewController: UIViewController {
     
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
     var awaySetPoint = 68
     var homeSetPoint = 68
     
-    @IBOutlet weak var dayLabelTop: UIView!
-    @IBOutlet weak var doneButton: UIButton!
     var currentSegment: UILabel? = nil
     var lastView: [UILabel] = []
     var homeAwayLabels: [UILabel] = []
     var tempLabels: [UILabel] = []
     
     var touchMask = false
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
+    var day = ""
+    
+    var segmentsInTempView = Dictionary<String, UILabel>()
+    var segmentsInView = Dictionary<String, UILabel>()
+    var times = Dictionary<String, UILabel>()
+    
+    @IBOutlet weak var dayLabelTop: UIView!
+    @IBOutlet weak var doneButton: UIButton!
     
     var greyView: UIView = UIView()
     var tempSetView: UIView = UIView()
@@ -45,6 +53,7 @@ class DayScheduleViewController: UIViewController {
     
     var awayMinusButton = UIButton()
     var awayPlusButton = UIButton()
+    
     func homeAwayToggle(sender:UISwitch){
         if homeAwaySwitch.on {
             setPointSetLabel.text = "   Home Temperature"
@@ -95,182 +104,28 @@ class DayScheduleViewController: UIViewController {
                 homeArray.append(["setPoint":temp , "status":status ] )
             }
             //print(homeArray)
-            appDelegate.sched!.setSegments(day, homeTemp: 0,awayTemp: 0,sched: homeArray)
+            appDelegate.sched!.setSegments(day,sched: homeArray)
             
             appDelegate.connection!.sendSchedule()
         }
     }
-    var segmentsInTempView = Dictionary<String, UILabel>()
-    var segmentsInView = Dictionary<String, UILabel>()
-    var times = Dictionary<String, UILabel>()
-    
-    var day = ""
     
     override func viewDidLoad() {
-        DayLabel.text = day
         super.viewDidLoad()
         appDelegate.currVC = self
-        makeSegments()
-        createTempViews()
-        makeTime()
+        
+        DayLabel.text = day
         
         doneButton.backgroundColor = JTKColors().orangeLight
         dayLabelTop.backgroundColor = JTKColors().orangeDark
         self.view.backgroundColor = JTKColors().backgroundColor
         
-        var array24Hour = appDelegate.sched!.getSegments(day)
-        var segments = bigView.subviews as [UILabel]
-        for n in 0...(segments.count-1){
-            
-            segments[n].text = array24Hour[n]["status"] as? String
-            print(n)
-            tempLabels[n].text = String(array24Hour[n]["setPoint"] as Int)
-            
-            if (array24Hour[n]["status"] as String == "Home"){
-                segments[n].backgroundColor = JTKColors().softGreen
-            }else{
-                segments[n].backgroundColor = JTKColors().lightGrey
-            }
-            
-        }
+        makeSegments()
+        createTempViews()
+        makeTime()
+        populateSchedule()
         createTempSetPopup()
-        
-    }
-    func createTempSetPopup(){
-        
-        var viewDict = Dictionary<String, UIView>()
-        
-        view.addSubview(greyView)
-        view.addSubview(tempSetView)
-        
-        
-        var greyViewStringH: String = "H:|[greyView]|"
-        var greyViewStringV: String = "V:|[greyView]|"
-        var tempViewStringH: String = "H:|-16-[tempView]-16-|"
-        
-        greyView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        tempSetView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        
-        
-        viewDict.updateValue(greyView, forKey: "greyView")
-        viewDict.updateValue(tempSetView, forKey: "tempView")
-        
-        
-        let greyConstraintH:Array = NSLayoutConstraint.constraintsWithVisualFormat(greyViewStringH,
-            options: NSLayoutFormatOptions(0),
-            metrics: nil,
-            views: viewDict)
-        let greyConstraintV:Array = NSLayoutConstraint.constraintsWithVisualFormat(greyViewStringV,
-            options: NSLayoutFormatOptions(0),
-            metrics: nil,
-            views: viewDict)
-        let tempConstraintH:Array = NSLayoutConstraint.constraintsWithVisualFormat(tempViewStringH,
-            options: NSLayoutFormatOptions(0),
-            metrics: nil,
-            views: viewDict)
-        
-        let xCenterConstraint = NSLayoutConstraint(item: tempSetView, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
-        let yCenterConstraint = NSLayoutConstraint(item: tempSetView, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1, constant: -100)
-        let heightConstraint = NSLayoutConstraint(item: tempSetView, attribute: .Height, relatedBy: .Equal, toItem: self.view, attribute: .Height, multiplier: 1/5, constant: 1)
-        
-        
-        
-        self.view.addConstraint(xCenterConstraint)
-        self.view.addConstraint(yCenterConstraint)
-        self.view.addConstraints(tempConstraintH)
-        self.view.addConstraint(heightConstraint)
-        
-        
-        
-        tempSetView.layer.cornerRadius = 5
-        tempSetView.layer.masksToBounds = true
-        tempSetView.layer.borderColor = UIColor.blackColor().CGColor
-        tempSetView.layer.borderWidth = 2
-        greyView.backgroundColor = UIColor.grayColor()
-        greyView.alpha = 9/10
-        tempSetView.backgroundColor = JTKColors().orangeLight
-        
-        
-        view.addConstraints(greyConstraintH)
-        view.addConstraints(greyConstraintV)
-        
-        
-        tempSetView.hidden = true
-        greyView.hidden = true
-        
         createTempSetInternals()
-    }
-    
-    func createTempSetInternals(){
-        var strings = Array<String>()
-        strings.append("H:|-10-[away]-10-[switch]-10-[home][plus]")
-        strings.append("V:|-8-[home][setPoint]")
-        strings.append("V:|-8-[away][setPoint]")
-        strings.append("H:|-4-[setPoint][minus]")
-        strings.append("H:|-4-[setPointLabel][minus]")
-        strings.append("V:|-8-[switch][setPoint][setPointLabel]-4-|")
-        strings.append("V:|-4-[plus]-0-[minus]-4-|")
-        strings.append("H:[plus]-4-|")
-        strings.append("H:[minus]-4-|")
-        
-        var homeLabel = UILabel()
-        homeLabel.text = "Home"
-        var awayLabel = UILabel()
-        awayLabel.text = "Away"
-        awayLabel.textAlignment = NSTextAlignment.Right
-       
-        setPointSetLabel.text = "   Home Temperature"
-        setPointSetLabel.textAlignment = NSTextAlignment.Center
-        
-        setPointLabel.setContentHuggingPriority(1000, forAxis: .Vertical)
-        setPointSetLabel.setContentHuggingPriority(1000, forAxis: .Vertical)
-        setPointLabel.text = "68°"
-        setPointLabel.font = UIFont(name: setPointLabel.font.fontName, size: 50)
-        setPointLabel.textAlignment = NSTextAlignment.Center
-        
-        var views = ["switch": homeAwaySwitch,
-            "setPointLabel":setPointSetLabel,
-            "setPoint":setPointLabel,
-            "plus":plusButton,
-            "minus":minusButton,
-            "home":homeLabel,
-            "away":awayLabel]
-        
-        homeAwaySwitch.state
-        homeAwaySwitch.on = true
-        homeAwaySwitch.addTarget(self, action:"homeAwayToggle:", forControlEvents: .TouchUpInside)
-        plusButton.setImage(UIImage(named: "PlusImage"), forState: .Normal)
-        plusButton.addTarget(self, action: "plusClick:", forControlEvents: UIControlEvents.TouchUpInside)
-        minusButton.setImage(UIImage(named: "MinusImage"), forState: .Normal)
-        minusButton.addTarget(self, action: "minusClick:", forControlEvents: UIControlEvents.TouchUpInside)
-        plusButton.setImage(UIImage(named: "MinusImage"), forState: .Highlighted)
-        minusButton.setImage(UIImage(named: "PlusImage"), forState: .Highlighted)
-        plusButton.layer.cornerRadius = 3
-        plusButton.layer.borderWidth = 1
-        minusButton.layer.cornerRadius = 3
-        minusButton.layer.borderWidth = 1
-        
-        for view1 in views{
-            view1.1.setTranslatesAutoresizingMaskIntoConstraints(false)
-            tempSetView.addSubview(view1.1)
-        }
-        for constraint in Range(start: 0, end: strings.count){
-            let constraintArr:Array = NSLayoutConstraint.constraintsWithVisualFormat(strings[constraint],
-                options: NSLayoutFormatOptions(0),
-                metrics: nil,
-                views: views)
-            
-            tempSetView.addConstraints(constraintArr)
-        }
-        var pmHeight = NSLayoutConstraint(item: plusButton, attribute: .Height, relatedBy: .Equal, toItem:minusButton, attribute: .Height, multiplier: 1, constant: 0.0)
-        var pWidth = NSLayoutConstraint(item: plusButton, attribute: .Width, relatedBy: .Equal, toItem:plusButton, attribute: .Height, multiplier: 1, constant: 0.0)
-        var mWidth = NSLayoutConstraint(item: minusButton, attribute: .Width, relatedBy: .Equal, toItem:plusButton, attribute: .Width, multiplier: 1, constant: 0.0)
-        var hwWidth = NSLayoutConstraint(item: homeLabel, attribute: .Width, relatedBy: .Equal, toItem:awayLabel, attribute: .Width, multiplier: 1, constant: 0.0)
-        
-        tempSetView.addConstraint(hwWidth)
-        tempSetView.addConstraint(pmHeight)
-        tempSetView.addConstraint(mWidth)
-        tempSetView.addConstraint(pWidth)
         
     }
     
@@ -302,7 +157,7 @@ class DayScheduleViewController: UIViewController {
         l5pm.text = "5pm -"
         l5pm.font = UIFont(name: l5pm.font.fontName, size: 17)
         var l11pm: UILabel = UILabel()
-        l11pm.text = "11am -"
+        l11pm.text = "11pm -"
         l11pm.font = UIFont(name: l11pm.font.fontName, size: 14)
         
         var labels = [l1am, l7am, l12pm, l5pm, l11pm]
@@ -377,7 +232,8 @@ class DayScheduleViewController: UIViewController {
             bigView.addConstraints(viewNew_constraint_H)
             
             viewNew.text = "Home"
-            
+            viewNew.adjustsFontSizeToFitWidth = true
+            viewNew.minimumScaleFactor = 0.5
             
             viewNew.textAlignment = NSTextAlignment.Center
             var a = i/24
@@ -427,8 +283,8 @@ class DayScheduleViewController: UIViewController {
             tempViewBig.addConstraints(viewNew_constraint_H)
             
             viewNew.text = "68"
-            
-            
+            viewNew.adjustsFontSizeToFitWidth = true
+            viewNew.minimumScaleFactor = 2.0
             
             viewNew.textAlignment = NSTextAlignment.Center
             var a = i/24
@@ -448,11 +304,152 @@ class DayScheduleViewController: UIViewController {
         
     }
     
-    override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.All.rawValue)
+    func populateSchedule(){
+        var array24Hour = appDelegate.sched!.getSegments(day)
+        var segments = bigView.subviews as [UILabel]
+        for n in 0...(segments.count-1){
+            
+            segments[n].text = array24Hour[n]["status"] as? String
+            tempLabels[n].text = String(array24Hour[n]["setPoint"] as Int)
+            
+            if (array24Hour[n]["status"] as String == "Home"){
+                segments[n].backgroundColor = JTKColors().softGreen
+            }else{
+                segments[n].backgroundColor = JTKColors().lightGrey
+            }
+            
+        }
     }
-    override func viewWillAppear(animated: Bool) {
+    
+    func createTempSetPopup(){
         
+        var viewDict = Dictionary<String, UIView>()
+        
+        view.addSubview(greyView)
+        view.addSubview(tempSetView)
+        
+        
+        var greyViewStringH: String = "H:|[greyView]|"
+        var greyViewStringV: String = "V:|[greyView]|"
+        var tempViewStringH: String = "H:|-16-[tempView]-16-|"
+        
+        greyView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        tempSetView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        
+        viewDict.updateValue(greyView, forKey: "greyView")
+        viewDict.updateValue(tempSetView, forKey: "tempView")
+        
+        
+        let greyConstraintH:Array = NSLayoutConstraint.constraintsWithVisualFormat(greyViewStringH,
+            options: NSLayoutFormatOptions(0),
+            metrics: nil,
+            views: viewDict)
+        let greyConstraintV:Array = NSLayoutConstraint.constraintsWithVisualFormat(greyViewStringV,
+            options: NSLayoutFormatOptions(0),
+            metrics: nil,
+            views: viewDict)
+        let tempConstraintH:Array = NSLayoutConstraint.constraintsWithVisualFormat(tempViewStringH,
+            options: NSLayoutFormatOptions(0),
+            metrics: nil,
+            views: viewDict)
+        
+        let xCenterConstraint = NSLayoutConstraint(item: tempSetView, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
+        let yCenterConstraint = NSLayoutConstraint(item: tempSetView, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1, constant: -100)
+        let heightConstraint = NSLayoutConstraint(item: tempSetView, attribute: .Height, relatedBy: .Equal, toItem: self.view, attribute: .Height, multiplier: 1/5, constant: 1)
+        
+        self.view.addConstraint(xCenterConstraint)
+        self.view.addConstraint(yCenterConstraint)
+        self.view.addConstraints(tempConstraintH)
+        self.view.addConstraint(heightConstraint)
+        
+        tempSetView.layer.cornerRadius = 5
+        tempSetView.layer.masksToBounds = true
+        tempSetView.layer.borderColor = UIColor.blackColor().CGColor
+        tempSetView.layer.borderWidth = 2
+        greyView.backgroundColor = UIColor.grayColor()
+        greyView.alpha = 9/10
+        tempSetView.backgroundColor = JTKColors().orangeLight
+        
+        
+        view.addConstraints(greyConstraintH)
+        view.addConstraints(greyConstraintV)
+        
+        
+        tempSetView.hidden = true
+        greyView.hidden = true
+    }
+    
+    func createTempSetInternals(){
+        var strings = Array<String>()
+        strings.append("H:|-10-[away]-10-[switch]-10-[home][plus]")
+        strings.append("V:|-8-[home][setPoint]")
+        strings.append("V:|-8-[away][setPoint]")
+        strings.append("H:|-4-[setPoint][minus]")
+        strings.append("H:|-4-[setPointLabel][minus]")
+        strings.append("V:|-8-[switch][setPoint][setPointLabel]-4-|")
+        strings.append("V:|-4-[plus]-0-[minus]-4-|")
+        strings.append("H:[plus]-4-|")
+        strings.append("H:[minus]-4-|")
+        
+        var homeLabel = UILabel()
+        homeLabel.text = "Home"
+        var awayLabel = UILabel()
+        awayLabel.text = "Away"
+        awayLabel.textAlignment = NSTextAlignment.Right
+        
+        setPointSetLabel.text = "   Home Temperature"
+        setPointSetLabel.textAlignment = NSTextAlignment.Center
+        
+        setPointLabel.setContentHuggingPriority(1000, forAxis: .Vertical)
+        setPointSetLabel.setContentHuggingPriority(1000, forAxis: .Vertical)
+        setPointLabel.text = "68°"
+        setPointLabel.font = UIFont(name: setPointLabel.font.fontName, size: 50)
+        setPointLabel.textAlignment = NSTextAlignment.Center
+        
+        var views = ["switch": homeAwaySwitch,
+            "setPointLabel":setPointSetLabel,
+            "setPoint":setPointLabel,
+            "plus":plusButton,
+            "minus":minusButton,
+            "home":homeLabel,
+            "away":awayLabel]
+        
+        homeAwaySwitch.state
+        homeAwaySwitch.on = true
+        homeAwaySwitch.addTarget(self, action:"homeAwayToggle:", forControlEvents: .TouchUpInside)
+        plusButton.setImage(UIImage(named: "PlusImage"), forState: .Normal)
+        plusButton.addTarget(self, action: "plusClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        minusButton.setImage(UIImage(named: "MinusImage"), forState: .Normal)
+        minusButton.addTarget(self, action: "minusClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        plusButton.setImage(UIImage(named: "PlusImageGrey"), forState: .Highlighted)
+        minusButton.setImage(UIImage(named: "MinusImageGrey"), forState: .Highlighted)
+        plusButton.layer.cornerRadius = 3
+        plusButton.layer.borderWidth = 1
+        minusButton.layer.cornerRadius = 3
+        minusButton.layer.borderWidth = 1
+        
+        for view1 in views{
+            view1.1.setTranslatesAutoresizingMaskIntoConstraints(false)
+            tempSetView.addSubview(view1.1)
+        }
+        for constraint in Range(start: 0, end: strings.count){
+            let constraintArr:Array = NSLayoutConstraint.constraintsWithVisualFormat(strings[constraint],
+                options: NSLayoutFormatOptions(0),
+                metrics: nil,
+                views: views)
+            
+            tempSetView.addConstraints(constraintArr)
+        }
+        var pmHeight = NSLayoutConstraint(item: plusButton, attribute: .Height, relatedBy: .Equal, toItem:minusButton, attribute: .Height, multiplier: 1, constant: 0.0)
+        var pWidth = NSLayoutConstraint(item: plusButton, attribute: .Width, relatedBy: .Equal, toItem:plusButton, attribute: .Height, multiplier: 1, constant: 0.0)
+        var mWidth = NSLayoutConstraint(item: minusButton, attribute: .Width, relatedBy: .Equal, toItem:plusButton, attribute: .Width, multiplier: 1, constant: 0.0)
+        var hwWidth = NSLayoutConstraint(item: homeLabel, attribute: .Width, relatedBy: .Equal, toItem:awayLabel, attribute: .Width, multiplier: 1, constant: 0.0)
+        
+        tempSetView.addConstraint(hwWidth)
+        tempSetView.addConstraint(pmHeight)
+        tempSetView.addConstraint(mWidth)
+        tempSetView.addConstraint(pWidth)
         
     }
     
@@ -468,7 +465,6 @@ class DayScheduleViewController: UIViewController {
                         toggleSliver(segments)
                     }
                 }
-                
             }
         }
     }
@@ -518,7 +514,7 @@ class DayScheduleViewController: UIViewController {
                 if (!lastView.isEmpty){
                     greyView.hidden = false
                     tempSetView.hidden = false
-                 
+                    
                     touchMask = true
                     lastView.append(currentSegment!)
                 }
@@ -528,7 +524,7 @@ class DayScheduleViewController: UIViewController {
                 if (!tempSetView.frame.contains(touch.locationInView(greyView))){
                     greyView.hidden = true
                     tempSetView.hidden = true
-
+                    
                     touchMask = false
                     
                     setHomeTemps()
@@ -551,7 +547,6 @@ class DayScheduleViewController: UIViewController {
                     }
                 }
             }
-            
         }
     }
     
@@ -559,24 +554,15 @@ class DayScheduleViewController: UIViewController {
         if(segment.backgroundColor == JTKColors().lightGrey){
             segment.backgroundColor = JTKColors().darkerGrey
             var seg = segment as UILabel
-            
-            //seg.textAlignment = NSTextAlignment.Left
-            
         } else if (segment.backgroundColor == JTKColors().softGreen){
             segment.backgroundColor = JTKColors().darkerGreen
             var seg = segment as UILabel
-            
-            //seg.textAlignment = NSTextAlignment.Center
         } else if (segment.backgroundColor == JTKColors().darkerGreen){
             segment.backgroundColor = JTKColors().softGreen
             var seg = segment as UILabel
-            
-            //seg.textAlignment = NSTextAlignment.Center
         } else {
             segment.backgroundColor = JTKColors().lightGrey
             var seg = segment as UILabel
-            
-            //seg.textAlignment = NSTextAlignment.Center
         }
     }
     

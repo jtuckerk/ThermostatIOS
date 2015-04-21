@@ -26,6 +26,8 @@
 		19DAC9FE1AC892B400F75860 /* JSONParseDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DAC9FD1AC892B400F75860 /* JSONParseDictionary.swift */; };
 		19DACA001AC892BE00F75860 /* JSONParseArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DAC9FF1AC892BE00F75860 /* JSONParseArray.swift */; };
 		19DACA021AC892C800F75860 /* JSONStringify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DACA011AC892C800F75860 /* JSONStringify.swift */; };
+		19E79E721AE0544B009903B6 /* MinusImageGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 19E79E711AE0544B009903B6 /* MinusImageGrey.png */; };
+		19E79E741AE05453009903B6 /* PlusImageGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 19E79E731AE05453009903B6 /* PlusImageGrey.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		19DAC9FD1AC892B400F75860 /* JSONParseDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParseDictionary.swift; sourceTree = "<group>"; };
 		19DAC9FF1AC892BE00F75860 /* JSONParseArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParseArray.swift; sourceTree = "<group>"; };
 		19DACA011AC892C800F75860 /* JSONStringify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONStringify.swift; sourceTree = "<group>"; };
+		19E79E711AE0544B009903B6 /* MinusImageGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MinusImageGrey.png; sourceTree = "<group>"; };
+		19E79E731AE05453009903B6 /* PlusImageGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlusImageGrey.png; sourceTree = "<group>"; };
 		19FE909F1AC9D67400BA2143 /* SimpleThermostat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SimpleThermostat.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,8 +126,10 @@
 		196143E11A7C1F1400CDE23D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				19E79E711AE0544B009903B6 /* MinusImageGrey.png */,
 				1908FBF01ACF1BD90089FAD4 /* settings18.png */,
 				19A2BAFE1ACB9A2B00267EF6 /* MinusImage.png */,
+				19E79E731AE05453009903B6 /* PlusImageGrey.png */,
 				19A2BAFC1ACB98BA00267EF6 /* PlusImage.png */,
 				196144401A7D9BDF00CDE23D /* SimpleThermostat-Bridging-Header.h */,
 				196144421A7D9C6200CDE23D /* GCDAsyncSocket.m */,
@@ -274,7 +280,9 @@
 			files = (
 				19A2BAFD1ACB98BA00267EF6 /* PlusImage.png in Resources */,
 				196143E91A7C1F1400CDE23D /* main.storyboard in Resources */,
+				19E79E741AE05453009903B6 /* PlusImageGrey.png in Resources */,
 				19A2BAFF1ACB9A2B00267EF6 /* MinusImage.png in Resources */,
+				19E79E721AE0544B009903B6 /* MinusImageGrey.png in Resources */,
 				19A2BAFB1ACB93BE00267EF6 /* LaunchScreen.xib in Resources */,
 				196143EB1A7C1F1400CDE23D /* Images.xcassets in Resources */,
 				1908FBF11ACF1BD90089FAD4 /* settings18.png in Resources */,
@@ -374,7 +382,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -411,7 +419,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

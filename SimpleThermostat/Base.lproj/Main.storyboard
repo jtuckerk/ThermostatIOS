@@ -233,7 +233,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="DayLabel" destination="TR4-N8-yXQ" id="8Xa-P2-Dr1"/>
+                        <outlet property="DayLabel" destination="TR4-N8-yXQ" id="bIP-Im-OL1"/>
                         <outlet property="bigView" destination="e7F-PJ-zqs" id="M5b-Wv-kag"/>
                         <outlet property="dayLabelTop" destination="GFI-bS-JQu" id="RG5-Ru-Aey"/>
                         <outlet property="doneButton" destination="Yn2-CI-uu4" id="izg-zf-H1v"/>

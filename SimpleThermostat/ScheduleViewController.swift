@@ -14,28 +14,17 @@ import UIKit
 
 class scheduleViewController: UIViewController {
     
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
+    var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    
     @IBOutlet weak var scheduleButton: UIButton!
     @IBOutlet weak var thermostatButton: UIButton!
     @IBOutlet weak var backgroundView: UIView!
     
-    var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    @IBAction func connect(sender: AnyObject) {
-        
-        appDelegate.connection!.bigSendTest()
-        messageOut.text = appDelegate.connection?.status
-    }
-    
-    @IBOutlet weak var messageOut: UILabel!
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    
-    @IBOutlet var view1: UIView!
-    
     func dayOfWeekSend(sender: AnyObject) {
-        appDelegate.connection!.status = "here2"
         appDelegate.connection!.getSchedule()
 
-        
-        appDelegate.connection!.status = "here3"
         self.performSegueWithIdentifier("dayOfWeek", sender: sender)
     }
     
@@ -55,9 +44,7 @@ class scheduleViewController: UIViewController {
         if segue.identifier == "dayOfWeek"{
         var controller: DayScheduleViewController = segue.destinationViewController as DayScheduleViewController
         var identifier1 = segue.identifier
-        NSLog("segue: " + identifier1!)
         var sender1 = sender!.currentTitle
-        NSLog("sender: " + sender1!!)
         controller.day = sender1!!
         }
     }

@@ -20,13 +20,14 @@ class schedule: NSObject {
     
     var dayArray :Array<String> = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     
-
+    //holds current values for the thermostat
     var currentHomeTemp = 68
     var currentSegment: [String: AnyObject] = ["setPoint":68, "status":"Home"]
     var currentHVACStatus = "Off"
     
     override init(){
         
+        //initialize schedule structure
         scheduleDict = Dictionary<String, Array<[String:AnyObject]>>()
         scheduleDict.updateValue([], forKey: "Monday")
         scheduleDict.updateValue([], forKey: "Tuesday")
@@ -36,18 +37,20 @@ class schedule: NSObject {
         scheduleDict.updateValue([], forKey: "Saturday")
         scheduleDict.updateValue([], forKey: "Sunday")
         
+        //sets each segment in schedule to home at 68 degrees
         for day in scheduleDict{
             var arr: Array<[String:AnyObject]> = []
             for(var i = 0; i<24*segmentsPerHour; ++i){
                 arr.append(defaultSegment)
             }
             scheduleDict.updateValue(arr, forKey: day.0)
-
+            
         }
         super.init()
-  
+        
     }
     
+    //Gets phone time and returns a Day, Hour, Minute, Second Array DHMS
     func getTime() -> Array<Int>{
         var date: NSDate = NSDate()
         let calendar = NSCalendar.currentCalendar()
@@ -67,8 +70,10 @@ class schedule: NSObject {
     }
     
     
-    //@@only setup for 24 segment input
-    func setSegments(day: String, homeTemp: Int, awayTemp:Int, sched: Array<[String:AnyObject]>){
+    //takes a day and an array with segment objects containing home/away status and a
+    // set point temp for each segment.
+    // this implementation only supports 1 segment per hour
+    func setSegments(day: String, sched: Array<[String:AnyObject]>){
         
         for i in 0...23{
             var temp = sched[i]
@@ -78,44 +83,38 @@ class schedule: NSObject {
                 
             }
         }
-       //@@print( getJsonSchedule())
-
     }
     
+    // Gets an of segments for a day
     func getSegments(day:String)->Array<[String:AnyObject]>{
         var arr24Hour = Array<[String:AnyObject]>()
         for (var n=0; n<scheduleDict[day]!.count-1 ; n++) {
-            if(n%4 == 0 ){
-            arr24Hour.append( scheduleDict[day]![n])
-            println(scheduleDict[day]![n])
-            //@@print("\n")
+            if(n%segmentsPerHour == 0 ){
+                arr24Hour.append( scheduleDict[day]![n])
             }
         }
         
         return arr24Hour
         
     }
+    
+    // Gets a json representation of the current schedule held on the IOS device
     func getJsonSchedule()->String{
         let tmpSched = scheduleDict
+        
+        //the JSON Stringify causes issues with the sched object - assigning a value to itself ensures
+        // that a copy is created so that the reference to the scheduleDict cannot be corrupted
         var tmp2 = tmpSched
         tmp2["Friday"]![0] = tmpSched["Friday"]![0]
-        //JSONStringify messes up schedule reference dont pass directly in
-        //@@ this is fucked up
         var stringDict =  JSONStringify(tmp2 , prettyPrinted: true)
         
         return stringDict
     }
     
-    func setSched(dict: Dictionary<String, Array<[String:AnyObject]>>){
-       scheduleDict = dict
+    // sets schedule to a new schedule passed in
+    func setSched(schedDict: Dictionary<String, Array<[String:AnyObject]>>){
+        scheduleDict = schedDict
     }
-    
-    //sets the offset for the time and day (does not keep track of months/years)
-    //from the devices clock - allows the smartphone to control the time
-    func setTime(day:Int, hour:Int, minute:Int, second:Int){
-    
-    }
-    
     
     //gets segment at a certain time as specified by [day, hour, minute, second]
     func getTimeSegment(DHMStuple:Array<Int>)->[String:AnyObject]{
@@ -131,55 +130,52 @@ class schedule: NSObject {
         setSegmentWithABtuple(abTuple, segment: segment)
     }
     
-    //used to set the exact array position of the time
+    //used to set segment for the exact array position of the time represented as an (day, segment) tuple
     func setSegmentWithABtuple(abTuple:Array<Int>, segment:[String:AnyObject]){
         var day = dayArray[abTuple[0]]
         var b = abTuple[1] as Int
         scheduleDict[day]![b] = segment
     }
     
-    //sets a range of setpoints
+    //sets a range of segments
     func setSegmentRange(startDHMS:Array<Int>, endDHMS:Array<Int>, segment:[String:AnyObject]){
-    var startTuple = getSegmentCoordinates(startDHMS)
-    var endTuple = getSegmentCoordinates(endDHMS)
-    while(startTuple[0] < endTuple[0]){
-        while(startTuple[1] < segmentsPerHour*24){
+        var startTuple = getSegmentCoordinates(startDHMS)
+        var endTuple = getSegmentCoordinates(endDHMS)
+        while(startTuple[0] < endTuple[0]){
+            while(startTuple[1] < segmentsPerHour*24){
+                self.setSegmentWithABtuple(startTuple, segment: segment)
+                print(startTuple)
+                startTuple[1]+=1
+            }
+            startTuple[1]=0
+            startTuple[0]+=1
+        }
+        
+        while(startTuple[1] <= endTuple[1]){
             self.setSegmentWithABtuple(startTuple, segment: segment)
-            print(startTuple)
             startTuple[1]+=1
-        }
-        
-        startTuple[1]=0
-        startTuple[0]+=1
-        }
-        
-    while(startTuple[1] <= endTuple[1]){
-        self.setSegmentWithABtuple(startTuple, segment: segment)
-        
-        startTuple[1]+=1
-        
         }
     }
     
-    //used to get the coordinates of a setpoint in the schedule dictionary's arrays
+    //used to get the coordinates of a segment in the schedule dictionary's arrays
     func getSegmentCoordinates(DHMStuple:Array<Int>)->Array<Int>{
         var day = DHMStuple[0]
         var hour = DHMStuple[1]
         var minute = DHMStuple[2]
         var second = DHMStuple[3]
-    
         
         var a = day
-    
         var b = hour*segmentsPerHour + Int(minute/(60/segmentsPerHour))
         return [a,b]
-        }
+    }
     
-    //gets temp setpoint for current time
+    //gets the segment temp setpoint and status for current time
     func getCurrentSeg()->[String:AnyObject]{
         return getTimeSegment(getTime())
     }
     
+    //Accesses the wall device using the app wired connection object to update
+    // the current home temperature, status and setpoint
     func updateCurrent(){
         //appDelegate.connection!.getSchedule()
         appDelegate.connection!.getTemp()
@@ -189,22 +185,30 @@ class schedule: NSObject {
         currentSegment["status"] = tmp["status"]
         
     }
+    
+    //increases setpoint of current segment only
     func increaseSetPoint(){
         var tmp = currentSegment["setPoint"] as Int
         tmp += 1
         currentSegment["setPoint"] = tmp as AnyObject
         
     }
+    
+    //decreases setpoint of current segment only
     func decreaseSetPoint(){
         var tmp = currentSegment["setPoint"] as Int
         tmp -= 1
         currentSegment["setPoint"] = tmp as AnyObject
     }
+    
+    //sets segments for a period following the current time
     func setSetPointTemporary(){
         var endTime = getTime()
         endTime = addTime(endTime, days: 0, hours: 2, minutes: 0,seconds: 0)
         setSegmentRange(getTime(), endDHMS: endTime, segment: currentSegment)
     }
+    
+    // adds certain amount of time to DHMS input and returns a DHMS format time
     func addTime(timeDHMS:Array<Int>, days:Int, hours: Int, minutes: Int, seconds:Int)->Array<Int>{
         var addtime = [days,hours,minutes,seconds]
         var result = [0,0,0,0]
@@ -225,8 +229,9 @@ class schedule: NSObject {
         
         return result
     }
+    
+    //sets device temp - used for demo purposes only
     func setTemp(temp: Int){
-        
         appDelegate.connection!.setTemp(temp)
     }
     
